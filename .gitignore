@@ -31,8 +31,14 @@
 *.out
 *.app
 
+# Zig
+.zig-cache/
+zig-out/
+zig-pkg/
+
 # Misc
 bin/
+.direnv/
 .vscode/
 
 # Visual Studio built files

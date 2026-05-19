@@ -1,0 +1,8 @@
+.{
+    .name = .sonic3air,
+    .version = "26.3.28+0-stable",
+    .fingerprint = 0xadb30bb859c90693,
+    .minimum_zig_version = "0.17.0",
+    .paths = .{""},
+    .dependencies = .{},
+}
