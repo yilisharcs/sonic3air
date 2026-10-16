@@ -1,0 +1,19 @@
+.{
+    .name = .librmx,
+    .version = "4.1.0+4.1.0-3.2.0",
+    .fingerprint = 0x120114ec7876102e,
+    .minimum_zig_version = "0.17.0",
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "rmx_test",
+        "source",
+    },
+    .dependencies = .{
+        .SDL = .{ .path = "../framework/external/sdl/SDL2" },
+        .zlib = .{ .path = "../framework/external/zlib/zlib" },
+
+        .libogg = .{ .path = "../framework/external/ogg-vorbis/libogg" },
+        .libvorbis = .{ .path = "../framework/external/ogg-vorbis/libvorbis" },
+    },
+}

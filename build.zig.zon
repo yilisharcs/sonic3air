@@ -5,6 +5,8 @@
     .minimum_zig_version = "0.17.0",
     .paths = .{""},
     .dependencies = .{
+        .librmx = .{ .path = "librmx" },
+
         // allyourcodebase
         .SDL = .{
             // .url = "git+https://github.com/allyourcodebase/SDL?ref=SDL2#eeba46bd2f847355b0bcf41b38380beffb395779",

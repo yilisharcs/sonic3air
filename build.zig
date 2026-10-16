@@ -35,4 +35,14 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
     b.installArtifact(libvorbis_dep.artifact("vorbis"));
+
+    //
+
+    const librmx_dep = b.dependency("librmx", .{
+        .target = target,
+        .optimize = optimize,
+    });
+    b.installArtifact(librmx_dep.artifact("rmxbase"));
+    b.installArtifact(librmx_dep.artifact("rmxmedia"));
+    b.installArtifact(librmx_dep.artifact("rmxext_oggvorbis"));
 }
