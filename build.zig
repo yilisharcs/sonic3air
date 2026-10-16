@@ -15,4 +15,12 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
     b.installArtifact(zlib_dep.artifact("z"));
+
+    //
+
+    const libogg_dep = b.dependency("libogg", .{
+        .target = target,
+        .optimize = optimize,
+    });
+    b.installArtifact(libogg_dep.artifact("ogg"));
 }
