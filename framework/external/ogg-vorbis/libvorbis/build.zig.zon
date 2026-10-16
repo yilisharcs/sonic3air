@@ -1,0 +1,16 @@
+.{
+    .name = .libvorbis,
+    .version = "1.3.7",
+    .fingerprint = 0xbe9c093382f1581a,
+    .minimum_zig_version = "0.17.0",
+    .paths = .{
+        "COPYING",
+        "build.zig",
+        "build.zig.zon",
+        "include",
+        "lib",
+    },
+    .dependencies = .{
+        .libogg = .{ .path = "../libogg" },
+    },
+}

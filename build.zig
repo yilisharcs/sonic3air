@@ -23,4 +23,10 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
     b.installArtifact(libogg_dep.artifact("ogg"));
+
+    const libvorbis_dep = b.dependency("libvorbis", .{
+        .target = target,
+        .optimize = optimize,
+    });
+    b.installArtifact(libvorbis_dep.artifact("vorbis"));
 }
