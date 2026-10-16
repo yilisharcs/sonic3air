@@ -117,9 +117,10 @@ pub fn build(b: *std.Build) void {
         .target = target,
         .optimize = optimize,
     });
+    const sdl2 = sdl_dep.artifact("SDL2");
+    rmxmedia_mod.linkLibrary(sdl2);
     rmxmedia_mod.addIncludePath(sdl_dep.path("include"));
     rmxmedia_mod.addIncludePath(sdl_dep.path("include-pregen"));
-    rmxmedia_mod.linkLibrary(sdl_dep.artifact("SDL2"));
     switch (target.result.os.tag) {
         .windows => rmxmedia_mod.linkSystemLibrary("opengl32", .{}),
         else => rmxmedia_mod.linkSystemLibrary("GL", .{}),
@@ -131,6 +132,7 @@ pub fn build(b: *std.Build) void {
         .root_module = rmxmedia_mod,
     });
     b.installArtifact(rmxmedia);
+    rmxmedia.installLibraryHeaders(sdl2);
 
     // rmxext
     const rmxext_oggvorbis_mod = b.createModule(.{
@@ -149,7 +151,7 @@ pub fn build(b: *std.Build) void {
     });
     rmxext_oggvorbis_mod.linkLibrary(rmxmedia);
 
-    rmxext_oggvorbis_mod.linkLibrary(sdl_dep.artifact("SDL2"));
+    rmxext_oggvorbis_mod.linkLibrary(sdl2);
 
     const libogg_dep = b.dependency("libogg", .{
         .target = target,
@@ -169,4 +171,7 @@ pub fn build(b: *std.Build) void {
         .root_module = rmxext_oggvorbis_mod,
     });
     b.installArtifact(rmxext_oggvorbis);
+    rmxext_oggvorbis.installLibraryHeaders(sdl2);
+    rmxext_oggvorbis.installLibraryHeaders(libogg_dep.artifact("ogg"));
+    rmxext_oggvorbis.installLibraryHeaders(libvorbis_dep.artifact("vorbis"));
 }

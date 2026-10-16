@@ -1,0 +1,23 @@
+.{
+    .name = .oxygenengine,
+    .version = "0.0.0",
+    .fingerprint = 0x4d44e6d69163ca50,
+    .minimum_zig_version = "0.17.0",
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "___internal",
+        "_master_image_template",
+        "config.json",
+        "data",
+        "source",
+    },
+    .dependencies = .{
+        .librmx = .{ .path = "../../librmx" },
+        .lemonscript = .{ .path = "../lemonscript" },
+
+        .zlib = .{ .path = "../../framework/external/zlib/zlib" },
+
+        .imgui = .{ .path = "../../framework/external/imgui/imgui" },
+    },
+}

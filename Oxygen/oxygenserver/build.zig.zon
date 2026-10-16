@@ -1,0 +1,16 @@
+.{
+    .name = .oxygenserver,
+    .version = "0.0.0",
+    .fingerprint = 0xff8129ad6a01a468,
+    .minimum_zig_version = "0.17.0",
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "config.json",
+        "source",
+    },
+    .dependencies = .{
+        .librmx = .{ .path = "../../librmx" },
+        .oxygenengine = .{ .path = "../oxygenengine" },
+    },
+}

@@ -14,7 +14,8 @@ pub fn build(b: *std.Build) void {
         .target = target,
         .optimize = optimize,
     });
-    b.installArtifact(zlib_dep.artifact("z"));
+    const zlib = zlib_dep.artifact("z");
+    b.installArtifact(zlib);
 
     //
 
@@ -50,5 +51,18 @@ pub fn build(b: *std.Build) void {
         .target = target,
         .optimize = optimize,
     });
-    b.installArtifact(lemonscript_dep.artifact("lemonscript"));
+    const lemonscript = lemonscript_dep.artifact("lemonscript");
+    b.installArtifact(lemonscript);
+
+    const oxygenengine_dep = b.dependency("oxygenengine", .{
+        .target = target,
+        .optimize = optimize,
+    });
+    b.installArtifact(oxygenengine_dep.artifact("oxygenapp"));
+
+    const oxygenserver_dep = b.dependency("oxygenserver", .{
+        .target = target,
+        .optimize = optimize,
+    });
+    b.installArtifact(oxygenserver_dep.artifact("oxygenserver"));
 }

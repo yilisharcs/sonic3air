@@ -24,6 +24,9 @@
         libglvnd
         libX11
         libXext
+
+        # required for update-checks and to download the remastered soundtrack
+        curl
       ];
     };
   };

@@ -7,6 +7,8 @@
     .dependencies = .{
         .librmx = .{ .path = "librmx" },
         .lemonscript = .{ .path = "Oxygen/lemonscript" },
+        .oxygenengine = .{ .path = "Oxygen/oxygenengine" },
+        .oxygenserver = .{ .path = "Oxygen/oxygenserver" },
 
         // allyourcodebase
         .SDL = .{
