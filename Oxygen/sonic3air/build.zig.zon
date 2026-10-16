@@ -1,0 +1,20 @@
+.{
+    .name = .sonic3air_game,
+    .version = "0.0.0",
+    .fingerprint = 0x550907aec7b29637,
+    .minimum_zig_version = "0.17.0",
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "source",
+    },
+    .dependencies = .{
+        .librmx = .{ .path = "../../librmx" },
+        .lemonscript = .{ .path = "../lemonscript" },
+        .oxygenengine = .{ .path = "../oxygenengine" },
+
+        .SDL = .{ .path = "../../framework/external/sdl/SDL2" },
+        .libogg = .{ .path = "../../framework/external/ogg-vorbis/libogg" },
+        .libvorbis = .{ .path = "../../framework/external/ogg-vorbis/libvorbis" },
+    },
+}

@@ -9,6 +9,7 @@
         .lemonscript = .{ .path = "Oxygen/lemonscript" },
         .oxygenengine = .{ .path = "Oxygen/oxygenengine" },
         .oxygenserver = .{ .path = "Oxygen/oxygenserver" },
+        .sonic3air_game = .{ .path = "Oxygen/sonic3air" },
 
         // allyourcodebase
         .SDL = .{
