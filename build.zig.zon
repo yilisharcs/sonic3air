@@ -20,6 +20,11 @@
         },
 
         // in-house build.zig
+        .imgui = .{
+            // .url = "git+https://github.com/ocornut/imgui?ref=v1.92.4#9a5d5c45f54b1301ea471622eddede70384243af",
+            // .hash = "N-V-__8AAIPPcAA2STOPiQFV-Ei33DCWcQB9y9X3UfjeBwf-",
+            .path = "framework/external/imgui/imgui",
+        },
         .libogg = .{
             // .url = "https://github.com/xiph/ogg/releases/download/v1.3.6/libogg-1.3.6.tar.gz",
             // .hash = "N-V-__8AACreHwBswLqL6qf-KYPo6e1gC-5fcutRLcHkn17L",

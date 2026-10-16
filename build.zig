@@ -18,6 +18,12 @@ pub fn build(b: *std.Build) void {
 
     //
 
+    const imgui_dep = b.dependency("imgui", .{
+        .target = target,
+        .optimize = optimize,
+    });
+    b.installArtifact(imgui_dep.artifact("imgui"));
+
     const libogg_dep = b.dependency("libogg", .{
         .target = target,
         .optimize = optimize,
