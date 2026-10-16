@@ -45,4 +45,10 @@ pub fn build(b: *std.Build) void {
     b.installArtifact(librmx_dep.artifact("rmxbase"));
     b.installArtifact(librmx_dep.artifact("rmxmedia"));
     b.installArtifact(librmx_dep.artifact("rmxext_oggvorbis"));
+
+    const lemonscript_dep = b.dependency("lemonscript", .{
+        .target = target,
+        .optimize = optimize,
+    });
+    b.installArtifact(lemonscript_dep.artifact("lemonscript"));
 }

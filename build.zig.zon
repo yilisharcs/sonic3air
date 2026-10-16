@@ -6,6 +6,7 @@
     .paths = .{""},
     .dependencies = .{
         .librmx = .{ .path = "librmx" },
+        .lemonscript = .{ .path = "Oxygen/lemonscript" },
 
         // allyourcodebase
         .SDL = .{
