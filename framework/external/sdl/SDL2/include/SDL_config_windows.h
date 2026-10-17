@@ -25,16 +25,6 @@
 
 #include "SDL_platform.h"
 
-
-// -----------------------------------------------------------------------------------------------
-// [Euka] Added this change that seems needed for static Windows 64-bit builds with Visual Studio
-//  -> This prevents the linker error due to multiple "memcpy" definitions
-#if defined(_MSC_VER) && !defined(_WINDLL)
-#define HAVE_LIBC
-#endif
-// -----------------------------------------------------------------------------------------------
-
-
 /* winsdkver.h defines _WIN32_MAXVER for SDK version detection. It is present since at least the Windows 7 SDK,
  * but out of caution we'll only use it if the compiler supports __has_include() to confirm its presence.
  * If your compiler doesn't support __has_include() but you have winsdkver.h, define HAVE_WINSDKVER_H.  */
@@ -103,11 +93,15 @@ typedef unsigned int uintptr_t;
 #define HAVE_DXGI_H 1
 #define HAVE_XINPUT_H 1
 #if defined(_WIN32_MAXVER) && _WIN32_MAXVER >= 0x0A00  /* Windows 10 SDK */
+#if !defined(__MINGW32__) /* Header removed from Zig 0.14.0-dev in https://github.com/ziglang/zig/pull/22156 */
 #define HAVE_WINDOWS_GAMING_INPUT_H 1
+#endif
 #endif
 #if defined(_WIN32_MAXVER) && _WIN32_MAXVER >= 0x0602  /* Windows 8 SDK */
 #define HAVE_D3D11_H 1
+#if !defined(_MSC_VER)
 #define HAVE_ROAPI_H 1
+#endif
 #endif
 #if defined(__has_include)
 #if __has_include(<d3d12.h>) && __has_include(<d3d12sdklayers.h>)

@@ -17,6 +17,13 @@
 
         # build deps
         zig_0_17
+
+        # SDL
+        libpulseaudio
+        ## graphics
+        libglvnd
+        libX11
+        libXext
       ];
     };
   };

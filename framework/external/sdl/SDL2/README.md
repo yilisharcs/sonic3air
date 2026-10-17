@@ -1,17 +1,25 @@
+# SDL2 for Zig
 
-# Simple DirectMedia Layer (SDL) Version 2.0
+This is a fork of [SDL2](https://www.libsdl.org/), packaged for [Zig](https://ziglang.org).
+Unnecessary files have been deleted, and the build system has been replaced with `build.zig`.
 
-https://www.libsdl.org/
+SDL2 is in maintenance mode and will eventually be retired. The newer SDL3 can be found on
+the `main` branch.
 
-Simple DirectMedia Layer is a cross-platform development library designed
-to provide low level access to audio, keyboard, mouse, joystick, and graphics
-hardware via OpenGL and Direct3D. It is used by video playback software,
-emulators, and popular games including Valve's award winning catalog
-and many Humble Bundle games.
+## Getting started
 
-More extensive documentation is available in the docs directory, starting
-with README.md
+### Linking SDL2 to your project
 
-Enjoy!
+Fetch SDL and add to your `build.zig.zon` :
+```bash
+zig fetch --save=SDL git+https://github.com/allyourcodebase/SDL#SDL2
+```
 
-Sam Lantinga (slouken@libsdl.org)
+Add this to your `build.zig` :
+```zig
+const sdl_dep = b.dependency("SDL", .{
+    .optimize = .ReleaseFast,
+    .target = target,
+});
+exe.linkLibrary(sdl_dep.artifact("SDL2"));
+```

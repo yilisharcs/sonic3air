@@ -1,9 +1,5 @@
 @echo on
 
-pushd sdl
-call build_sdl.bat no_pause
-popd
-
 pushd zlib
 call build_zlib.bat no_pause
 popd
