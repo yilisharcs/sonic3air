@@ -9,4 +9,10 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
     b.installArtifact(sdl_dep.artifact("SDL2"));
+
+    const zlib_dep = b.dependency("zlib", .{
+        .target = target,
+        .optimize = optimize,
+    });
+    b.installArtifact(zlib_dep.artifact("z"));
 }

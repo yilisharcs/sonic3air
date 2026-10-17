@@ -5,10 +5,18 @@
     .minimum_zig_version = "0.17.0",
     .paths = .{""},
     .dependencies = .{
+        // allyourcodebase
         .SDL = .{
             // .url = "git+https://github.com/allyourcodebase/SDL?ref=SDL2#eeba46bd2f847355b0bcf41b38380beffb395779",
             // .hash = "SDL-2.32.10-JToi37O3EgEYuel13OaBpZXIS406c6ykvPFrqm-u1X8W",
             .path = "framework/external/sdl/SDL2",
+        },
+        .zlib = .{
+            // .url = "git+https://github.com/allyourcodebase/zlib?ref=zig-update#021a7fa2b75c7fe0bb163822682d05ae483d12f7",
+            // .hash = "zlib-1.3.1-ZZQ7lbYMAAB1hTSOKSXAKAgHsfDcyWNH_37ojw5WSpgR",
+            .path = "framework/external/zlib/zlib",
+            // .url = "https://github.com/madler/zlib/archive/refs/tags/v1.3.1.tar.gz",
+            // .hash = "N-V-__8AAB0eQwD-0MdOEBmz7intriBReIsIDNlukNVoNu6o",
         },
     },
 }
