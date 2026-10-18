@@ -14,7 +14,6 @@ pub fn build(b: *std.Build) void {
         }),
     });
     lib.root_module.addIncludePath(b.path("include"));
-    lib.root_module.addIncludePath(b.path("lib"));
     lib.root_module.addCSourceFiles(.{
         .root = b.path("lib"),
         .files = &.{
