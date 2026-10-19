@@ -74,36 +74,17 @@ namespace rmx
 		const uint64* data64 = (const uint64_t*)data;
 		const uint64* end = data64 + (bytes / 8);
 
-	#if defined(__arm__) || defined(__vita__)
-		const bool isAligned64 = ((size_t)data & 7) == 0;
-		if (!isAligned64)
+		// Do not access memory directly, but via readMemoryUnaligned to avoid "SIGBUS illegal alignment" issues (this happened on Android Release builds, but not in Debug for some reason)
+		//  -> This somewhat defeats the purpose of the whole optimization by using Murmur2...
+		while (data64 != end)
 		{
-			uint64 k;
-			while (data64 != end)
-			{
-				// Do not access memory directly, but byte-wise to avoid "SIGBUS illegal alignment" issues (this happened on Android Release builds, but not in Debug for some reason)
-				//  -> This somewhat defeats the purpose of the whole optimization by using Murmur2...
-				k = rmx::readMemoryUnaligned<uint64>(data64);
-				++data64;
-				k *= m;
-				k ^= k >> r;
-				k *= m;
-				h ^= k;
-				h *= m;
-			}
-		}
-		else
-	#endif
-		{
-			while (data64 != end)
-			{
-				uint64 k = *data64++;
-				k *= m;
-				k ^= k >> r;
-				k *= m;
-				h ^= k;
-				h *= m;
-			}
+			uint64 k = rmx::readMemoryUnaligned<uint64>(data64);
+			++data64;
+			k *= m;
+			k ^= k >> r;
+			k *= m;
+			h ^= k;
+			h *= m;
 		}
 
 		const uint8* data8 = (const uint8*)data64;

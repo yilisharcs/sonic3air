@@ -11,6 +11,8 @@
 
 #include "rmxbase/base/Types.h"
 
+#include <cstring>
+
 #if defined(PLATFORM_VITA)
 	#include <psp2/kernel/clib.h>
 #endif
@@ -19,11 +21,22 @@
 namespace rmx
 {
 #if !defined(__vita__)
+
+	// prefer memcpy over *(T*) because a typed dereference presumes alignment that callers cannot
+	// guarantee, thus UBSan flags it
 	template<typename T>
-	T readMemoryUnaligned(const void* pointer) { return *(T*)pointer; }
+	T readMemoryUnaligned(const void* pointer)
+	{
+		T value;
+		std::memcpy(&value, pointer, sizeof(T));
+		return value;
+	}
 
 	template<typename T>
-	T readMemoryUnalignedSwapped(const void* pointer) { return swapBytes<T>(*(T*)pointer); }
+	T readMemoryUnalignedSwapped(const void* pointer)
+	{
+		return swapBytes<T>(readMemoryUnaligned<T>(pointer));
+	}
 #else
 	template<typename T>
 	T readMemoryUnaligned(const void* pointer)
