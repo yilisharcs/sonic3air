@@ -41,7 +41,8 @@ namespace lemon
 			// Initialize the entry and data
 			mEntry = new (static_cast<void*>(entryPointer)) Entry();
 			uint8* contentPointer = entryPointer + sizeof(Entry);
-			memcpy(contentPointer, name.data(), name.length());
+			if (!name.empty())
+				memcpy(contentPointer, name.data(), name.length());
 
 			mEntry->mHash = hash;
 			mEntry->mString = std::string_view((const char*)contentPointer, name.length());
