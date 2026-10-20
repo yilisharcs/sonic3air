@@ -49,9 +49,10 @@ namespace lemon
 
 	RuntimeOpcode& RuntimeOpcodeBuffer::addOpcode(size_t parameterSize)
 	{
-		const size_t size = sizeof(RuntimeOpcode) + parameterSize;
+		const size_t unpaddedSize = sizeof(RuntimeOpcode) + parameterSize;
+		const size_t size = (unpaddedSize + 7) & ~(size_t)7;
 		RMX_ASSERT(mSize + size <= mReserved, "Exceeding reserved size of runtime opcode buffer");
-		RMX_ASSERT(size <= 0xc0, "Got large parameter size of " << parameterSize << " bytes");		// Actual hard limit is 0xff, but everything larger than 0xc0 is suspicious and a hint that the limit might be too low
+		RMX_ASSERT(unpaddedSize <= 0xc0, "Got large parameter size of " << parameterSize << " bytes");		// Actual hard limit is 0xff, but everything larger than 0xc0 is suspicious and a hint that the limit might be too low
 
 		uint8* opcodePointer = mBuffer + mSize;
 		mSize += size;
