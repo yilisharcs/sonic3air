@@ -11,6 +11,7 @@
 #include "lemon/program/Opcode.h"
 #include "lemon/runtime/Runtime.h"
 
+#include <cstring>
 
 namespace lemon
 {
@@ -55,22 +56,26 @@ namespace lemon
 
 		template<typename T> FORCE_INLINE T getParameter() const
 		{
-			return *reinterpret_cast<const T*>((uint8*)this + PARAMETER_OFFSET);
+			T value;
+			std::memcpy(&value, (const uint8*)this + PARAMETER_OFFSET, sizeof(T));
+			return value;
 		}
 
 		template<typename T> FORCE_INLINE T getParameter(size_t offset) const
 		{
-			return *reinterpret_cast<const T*>((uint8*)this + PARAMETER_OFFSET + offset);
+			T value;
+			std::memcpy(&value, (const uint8*)this + PARAMETER_OFFSET + offset, sizeof(T));
+			return value;
 		}
 
 		template<typename T> void setParameter(T value)
 		{
-			*reinterpret_cast<T*>((uint8*)this + PARAMETER_OFFSET) = value;
+			std::memcpy((uint8*)this + PARAMETER_OFFSET, &value, sizeof(T));
 		}
 
 		template<typename T> void setParameter(T value, size_t offset)
 		{
-			*reinterpret_cast<T*>((uint8*)this + PARAMETER_OFFSET + offset) = value;
+			std::memcpy((uint8*)this + PARAMETER_OFFSET + offset, &value, sizeof(T));
 		}
 	};
 
