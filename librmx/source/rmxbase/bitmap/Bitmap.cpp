@@ -610,7 +610,7 @@ void Bitmap::gaussianBlur(const Bitmap& source, float sigma)
 					value += factor[j] * (float)src[j*swid+c];
 					sum += factor[j];
 				}
-				dst[c] = (uint8)(value / sum + 0.5f);
+				dst[c] = (uint8)((sum > 0.0f) ? (value / sum + 0.5f) : 0.0f);
 			}
 			src += 4;
 			dst += 4;

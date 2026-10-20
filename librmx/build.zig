@@ -14,7 +14,6 @@ pub fn build(b: *std.Build) void {
     rmxbase_mod.addIncludePath(b.path("source"));
     rmxbase_mod.addCSourceFiles(.{
         .root = b.path("source/rmxbase"),
-        .flags = &.{"-fno-sanitize=float-cast-overflow"},
         .files = &.{
             "_jsoncpp/json_reader.cpp",
             "_jsoncpp/json_value.cpp",
