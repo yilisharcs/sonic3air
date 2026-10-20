@@ -742,7 +742,7 @@ namespace lemon
 		uint16 version = 0x01;
 		if (serializer.isReading())
 		{
-			const uint32 signature = *(const uint32*)serializer.peek();
+			const uint32 signature = rmx::readMemoryUnaligned<uint32>(serializer.peek());
 			if (signature == SIGNATURE)
 			{
 				serializer.skip(4);

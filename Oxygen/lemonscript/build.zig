@@ -19,7 +19,6 @@ pub fn build(b: *std.Build) void {
     lemonscript_mod.addIncludePath(b.path("source"));
     lemonscript_mod.addCSourceFiles(.{
         .root = b.path("source/lemon"),
-        .flags = &.{"-fno-sanitize=alignment"},
         .files = &.{
             "compiler/Compiler.cpp",
             "compiler/LineNumberTranslation.cpp",
