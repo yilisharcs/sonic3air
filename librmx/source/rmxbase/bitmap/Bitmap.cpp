@@ -853,7 +853,7 @@ inline void Bitmap::memcpyBlend(uint32* dst, int dwid, const uint32* src, int sw
 			float alpha_dst = (float)dstPtr[3] / 255.0f;
 			float A = 1.0f - (1.0f - alpha) * (1.0f - alpha_dst);
 			for (int c = 0; c < 3; ++c)
-				dstPtr[c] = (uint8)(((float)srcPtr[c] * alpha + (float)dstPtr[c] * alpha_dst * (1.0f - alpha)) / A);
+				dstPtr[c] = (uint8)((A > 0.0f) ? (((float)srcPtr[c] * alpha + (float)dstPtr[c] * alpha_dst * (1.0f - alpha)) / A) : 0.0f);
 			dstPtr[3] = (uint8)(A * 255.0f);
 		}
 	}
