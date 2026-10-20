@@ -127,9 +127,12 @@ public:
 		size_t bitIndex = (startIndex & 0x3f);
 		while (chunkIndex < NUM_CHUNKS)
 		{
+			// bitIndex can reach 64 here when a skip or scan runs past the chunk end
+			//  -> the shift needs 0 to 63, and the next chunk may be past the array
+			if (bitIndex >= 64) { ++chunkIndex; bitIndex = 0; continue; }
 			uint64 shifted = (mChunks[chunkIndex] >> bitIndex);		// Contains all bits in the current chunk, from the current bit index on
 			const uint64 allBitsSet = (bitIndex == 0) ? ~0 : (1ULL << bitIndex) - 1;
-			if (shifted == allBitsSet || bitIndex >= 64)
+			if (shifted == allBitsSet)
 			{
 				// Go to the next chunk
 				++chunkIndex;

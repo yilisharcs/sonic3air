@@ -54,7 +54,6 @@ pub fn build(b: *std.Build) void {
         .root = b.path("source/oxygen"),
         .flags = &.{
             "-fno-sanitize=alignment",
-            "-fno-sanitize=shift-exponent",
             "-fno-sanitize=shift-base",
         },
         .files = &.{
