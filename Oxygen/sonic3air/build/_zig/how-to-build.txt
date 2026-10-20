@@ -1,0 +1,50 @@
+
+=== Build under Linux ===
+
+Make sure the following packages are installed.
+If needed, install them via "sudo apt-get install" (for Debian-based systems, this may differ for other Linux distributions).
+	- zig 0.17 (from https://ziglang.org/download)
+	- libgl1-mesa-dev
+	- libglu1-mesa-dev
+	- libasound2-dev
+	- libpulse-dev
+	- libxcomposite-dev
+	- libxxf86vm-dev
+	- libcurl4-openssl-dev
+	=> Complete line to copy:
+		sudo apt-get install libgl1-mesa-dev libglu1-mesa-dev libasound2-dev libpulse-dev libxcomposite-dev libxxf86vm-dev libcurl4-openssl-dev
+	=> More candidates that might be needed by SDL2 see https://github.com/libsdl-org/SDL/blob/3bdc10f842c3eba74b9837caa21339a68a19efbe/.github/workflows/main.yml
+
+The following commands assume you start in the root directory of the S3AIR Git repo.
+
+Zig creates its own output directories, no setup step is needed.
+
+Build the development tree:
+	- zig build
+
+Build the data containers, compiled scripts and nativized code:
+	- zig build data
+
+Build the release bundle and its archive:
+	- zig build dist
+
+[Optional change]
+Add -Doptimize=<mode> to any of these commands to pick the optimization mode (default is debug):
+	- zig build dist -Doptimize=fast
+	=> The debug default is not playable, the framerate is godawful. Use "fast" for
+	=> release-style builds and anything you intend to play, "safe" keeps the runtime
+	=> checks, and "small" if you need to save a tiny bit of disk space.
+
+
+
+=== Run Linux Build ===
+
+Check if the build created the sonic3air_linux binary in the correct location, namely inside "zig-out/x86_64-linux/dev/bin".
+Place a copy of the S3&K ROM "Sonic_Knuckles_wSonic3.bin" inside "Oxygen/sonic3air" or "Oxygen/sonic3air/___internal".
+The following commands assume you're in the root directory of the S3AIR Git repo.
+
+Run S3AIR:
+	- zig build run
+
+To run OxygenApp instead:
+	- zig build run-oxygenapp
