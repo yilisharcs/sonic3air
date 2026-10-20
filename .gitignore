@@ -60,16 +60,6 @@ bin/
 /framework/external/sdl/SDL2/VisualC/tests/loopwave/sample.wav
 /framework/external/sdl/SDL2/VisualC/tests/testoverlay2/moose.dat
 
-# Oxygen
-/Oxygen/oxygenengine/OxygenApp
-/Oxygen/sonic3air/Sonic3AIR
-/Oxygen/sonic3air/source/_cmake/build/*
-/Oxygen/sonic3air/___internal/analysis/*
-/Oxygen/sonic3air/saves/scripts.bin
-/Oxygen/sonic3air/saves/rec
-/Oxygen/sonic3air/enginedata.bin
-/Oxygen/sonic3air/gamedata.bin
-
 # Xcode
 /Oxygen/sonic3air/build/_xcode/sonic3air.xcodeproj/project.xcworkspace/xcuserdata/*
 /Oxygen/sonic3air/build/_xcode/sonic3air.xcodeproj/xcuserdata/*

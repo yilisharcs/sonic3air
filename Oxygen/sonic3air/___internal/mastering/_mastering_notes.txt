@@ -17,12 +17,6 @@ Windows (using Visual Studio)
 	- The resulting package can be found inside "Oxygen/_MASTER"
 
 
-Linux
-	- Do the preparation steps above
-	- Execute "mastering_linux.sh" (can be done in a VM, in WSL, or of course on a real Linux installation)
-	- The resulting package can be found inside "Oxygen/_MASTER" (testing should definitely be done in a real Linux installation)
-
-
 Android
 	- Do the preparation steps above, incl. building S3AIR for your current working platform (Windows, Linux) first
 	- Build the package data
