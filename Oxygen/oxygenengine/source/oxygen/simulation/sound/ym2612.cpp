@@ -1334,7 +1334,7 @@ namespace soundemulation
 					if (!channel->FB)
 						out = 0;
 
-					channel->op1_out[1] = op_calc1(channel->SLOT[SLOT1].phase, eg_out, (out << channel->FB));
+					channel->op1_out[1] = op_calc1(channel->SLOT[SLOT1].phase, eg_out, (int32)((uint32)out << channel->FB));
 				}
 			}
 
