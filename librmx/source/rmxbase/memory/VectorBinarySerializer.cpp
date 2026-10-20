@@ -30,10 +30,10 @@ namespace
 		{
 			const size_t oldSize = buffer.size();
 			buffer.resize(oldSize + sizeof(T));
+		// Use memcpy to avoid issues with unaligned memory access
 		#if !defined(PLATFORM_VITA)
-			*(T*)&buffer[oldSize] = value;
+			memcpy(&buffer[oldSize], &value, sizeof(T));
 		#else
-			// Use memcpy to avoid issues with unaligned memory access
 			sceClibMemcpy(&buffer[oldSize], &value, sizeof(T));
 		#endif
 		}
