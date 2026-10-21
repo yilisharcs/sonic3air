@@ -245,21 +245,20 @@ void EmulatorInterface::writeMemory8(uint32 address, uint8 value)
 
 void EmulatorInterface::writeMemory16(uint32 address, uint16 value)
 {
-	uint16* mem = (uint16*)mInternal.accessMemory<MEMORY_MODE_WRITE>(address, 2);
-	*mem = swapBytes16(value);
+	uint8* pointer = mInternal.accessMemory<MEMORY_MODE_WRITE>(address, 2);
+	rmx::writeMemoryUnalignedSwapped<uint16>(pointer, value);
 }
 
 void EmulatorInterface::writeMemory32(uint32 address, uint32 value)
 {
-	uint32* mem = (uint32*)mInternal.accessMemory<MEMORY_MODE_WRITE>(address, 4);
-	*mem = swapBytes32(value);
+	uint8* pointer = mInternal.accessMemory<MEMORY_MODE_WRITE>(address, 4);
+	rmx::writeMemoryUnalignedSwapped<uint32>(pointer, value);
 }
 
 void EmulatorInterface::writeMemory64(uint32 address, uint64 value)
 {
-	// TODO: Check if the ARM byte alignment issue an Android (see "readMemory64") can happen here as well
-	uint64* mem = (uint64*)mInternal.accessMemory<MEMORY_MODE_WRITE>(address, 8);
-	*mem = swapBytes64(value);
+	uint8* pointer = mInternal.accessMemory<MEMORY_MODE_WRITE>(address, 8);
+	rmx::writeMemoryUnalignedSwapped<uint64>(pointer, value);
 }
 
 void EmulatorInterface::writeMemory8_dev(uint32 address, uint8 value)
@@ -269,20 +268,20 @@ void EmulatorInterface::writeMemory8_dev(uint32 address, uint8 value)
 
 void EmulatorInterface::writeMemory16_dev(uint32 address, uint16 value)
 {
-	uint16* mem = (uint16*)mInternal.accessMemory<MEMORY_MODE_WRITE_DEV>(address, 2);
-	*mem = swapBytes16(value);
+	uint8* pointer = mInternal.accessMemory<MEMORY_MODE_WRITE_DEV>(address, 2);
+	rmx::writeMemoryUnalignedSwapped<uint16>(pointer, value);
 }
 
 void EmulatorInterface::writeMemory32_dev(uint32 address, uint32 value)
 {
-	uint32* mem = (uint32*)mInternal.accessMemory<MEMORY_MODE_WRITE_DEV>(address, 4);
-	*mem = swapBytes32(value);
+	uint8* pointer = mInternal.accessMemory<MEMORY_MODE_WRITE_DEV>(address, 4);
+	rmx::writeMemoryUnalignedSwapped<uint32>(pointer, value);
 }
 
 void EmulatorInterface::writeMemory64_dev(uint32 address, uint64 value)
 {
-	uint64* mem = (uint64*)mInternal.accessMemory<MEMORY_MODE_WRITE_DEV>(address, 8);
-	*mem = swapBytes64(value);
+	uint8* pointer = mInternal.accessMemory<MEMORY_MODE_WRITE_DEV>(address, 8);
+	rmx::writeMemoryUnalignedSwapped<uint64>(pointer, value);
 }
 
 uint32& EmulatorInterface::getRegister(size_t index)
