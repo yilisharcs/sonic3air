@@ -52,7 +52,6 @@ pub fn build(b: *std.Build) void {
     oxygen_mod.addIncludePath(b.path("source"));
     oxygen_mod.addCSourceFiles(.{
         .root = b.path("source/oxygen"),
-        .flags = &.{"-fno-sanitize=alignment"},
         .files = &.{
             "application/Application.cpp",
             "application/Configuration.cpp",

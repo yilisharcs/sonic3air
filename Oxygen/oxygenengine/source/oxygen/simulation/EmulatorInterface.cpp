@@ -358,7 +358,7 @@ void EmulatorInterface::copyFromMemoryToVRam(uint16 vramAddress, uint32 sourceAd
 	const uint16* end = src + (bytes / 2);
 	for (; src != end; ++src, ++dst)
 	{
-		*dst = swapBytes16(*src);
+		rmx::writeMemoryUnaligned<uint16>(dst, rmx::readMemoryUnalignedSwapped<uint16>(src));
 	}
 
 	// Mark as changed
