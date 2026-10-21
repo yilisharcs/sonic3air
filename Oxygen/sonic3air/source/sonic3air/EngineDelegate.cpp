@@ -76,9 +76,9 @@ bool EngineDelegate::onEnginePreStartup()
 		if (!check)
 		{
 		#ifdef PLATFORM_WINDOWS
-			RMX_ERROR("Seems like you launched the Sonic3AIR.exe from inside the downloaded ZIP file.\n\nMake sure to first extract the ZIP somewhere like on your desktop, then start the Sonic3AIR.exe in the extracted folder.", );
+			RMX_ERROR("No game data was found next to Sonic3AIR.exe: expected 'data/metadata.json' or 'data/gamedata.bin'.\n\nIf you started it from inside a downloaded archive, extract the archive completely first; otherwise make sure the data folder sits next to the executable.", );
 		#else
-			RMX_ERROR("Seems like you launched the Sonic3AIR executable from inside the downloaded ZIP file.\n\nMake sure to first extract the ZIP somewhere like on your desktop, then start the Sonic3AIR executable in the extracted folder.", );
+			RMX_ERROR("No game data was found next to the Sonic3AIR executable: expected 'data/metadata.json' or 'data/gamedata.bin'.\n\nIf you started it from inside a downloaded archive, extract the archive completely first; otherwise make sure the data folder sits next to the executable.", );
 		#endif
 			return false;
 		}

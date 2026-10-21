@@ -96,10 +96,11 @@ EngineMain::~EngineMain()
 	delete &mInternal;
 }
 
-void EngineMain::execute()
+bool EngineMain::execute()
 {
 	// Startup the Oxygen Engine part that is independent from the application / project
-	if (startupEngine())
+	const bool success = startupEngine();
+	if (success)
 	{
 		// Enter the application run loop
 		run();
@@ -107,6 +108,7 @@ void EngineMain::execute()
 
 	// Done, now shut everything down
 	shutdown();
+	return success;
 }
 
 void EngineMain::onActiveModsChanged()
