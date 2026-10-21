@@ -66,6 +66,12 @@ namespace rmx
 #endif
 
 	template<typename T>
+	void writeMemoryUnaligned(void* pointer, T value)
+	{
+		std::memcpy(pointer, &value, sizeof(T));
+	}
+
+	template<typename T>
 	void writeMemoryUnalignedSwapped(void* pointer, T value)
 	{
 		const T swappedValue = swapBytes<T>(value);

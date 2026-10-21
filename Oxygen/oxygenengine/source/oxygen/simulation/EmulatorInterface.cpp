@@ -326,8 +326,7 @@ uint16 EmulatorInterface::readVRam16(uint16 vramAddress)
 
 void EmulatorInterface::writeVRam16(uint16 vramAddress, uint16 value)
 {
-	uint16* dst = (uint16*)(mInternal.mVRam + vramAddress);
-	*dst = value;
+	rmx::writeMemoryUnaligned<uint16>(mInternal.mVRam + vramAddress, value);
 
 	// Mark as changed
 	mInternal.mVRamChangeBits.setBit(vramAddress >> 5);
