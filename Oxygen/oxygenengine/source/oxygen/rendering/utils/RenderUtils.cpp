@@ -82,10 +82,10 @@ void RenderUtils::expandPatternDataFromVRAM(uint8* dst, const void* src_)
 
 void RenderUtils::expandPatternDataFromROM(uint8* dst, const void* src_)
 {
-	uint32* src = (uint32*)src_;
+	const uint8* src = static_cast<const uint8*>(src_);
 	for (uint8 y = 0; y < 8; ++y)
 	{
-		const uint32 bp = src[y];
+		const uint32 bp = rmx::readMemoryUnaligned<uint32>(src + y * sizeof(uint32));
 		dst[0] = (bp >> 4)  & 0x0f;
 		dst[1] = (bp >> 0)  & 0x0f;
 		dst[2] = (bp >> 12) & 0x0f;
