@@ -90,7 +90,7 @@ public:
 	EngineMain(EngineDelegateInterface& delegate_, ArgumentsReader& arguments);
 	~EngineMain();
 
-	void execute();
+	bool execute();
 
 	void onActiveModsChanged();
 	bool reloadFilePackage(std::wstring_view packageName, bool forceReload);

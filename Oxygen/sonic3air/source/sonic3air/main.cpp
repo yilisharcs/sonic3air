@@ -108,11 +108,15 @@ int main(int argc, char** argv)
 		}
 
 		// Now run the game
-		myMain.execute();
+		if (!myMain.execute())
+		{
+			return 1;
+		}
 	}
 	catch (const std::exception& e)
 	{
 		RMX_ERROR("Caught unhandled exception in main loop: " << e.what(), );
+		return 1;
 	}
 
 	return 0;

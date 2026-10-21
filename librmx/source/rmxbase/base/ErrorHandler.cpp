@@ -7,6 +7,7 @@
 */
 
 #include "rmxbase.h"
+#include <cstdio>
 #include <locale>
 
 #ifdef PLATFORM_WINDOWS
@@ -183,6 +184,10 @@ namespace rmx
 		if (nullptr != mLogger)
 		{
 			mLogger->logMessage(errorSeverity, message);
+		}
+		else
+		{
+			fputs((message + "\n").c_str(), stderr);
 		}
 	#else
 		sceClibPrintf("[ERROR] %s\n", message.c_str());
