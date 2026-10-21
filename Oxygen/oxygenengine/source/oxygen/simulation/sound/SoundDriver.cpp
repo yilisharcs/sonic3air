@@ -210,7 +210,7 @@ const uint16 zTracksSaveEnd			 = 0x1fa0;
 class Internal
 {
 public:
-	Internal()
+	__attribute__((no_sanitize("alignment"))) Internal()
 	{
 		// Some sanity checks
 		RMX_ASSERT(sizeof(zTrack) == 0x30, "");
@@ -1426,7 +1426,7 @@ private:
 	}
 
 	// Locations 0x0483 - (around) 0x0491
-	void zGetFMInstrumentPointer()
+	void __attribute__((no_sanitize("alignment"))) zGetFMInstrumentPointer()
 	{
 		if (zUpdatingSFX == 0)
 		{
@@ -1599,7 +1599,7 @@ private:
 	}
 
 	// Locations 0x0558 - ?
-	void zPlayMusic()
+	void __attribute__((no_sanitize("alignment"))) zPlayMusic()
 	{
 		const uint8 soundId = a;
 		--a;	// Remap music index to start from 0 for AIZ 1 music
@@ -1670,7 +1670,7 @@ private:
 	}
 
 	// Locations 0x05de - ?
-	void zBGMLoad(uint16 backup_af)
+	void __attribute__((no_sanitize("alignment"))) zBGMLoad(uint16 backup_af)
 	{
 		af = backup_af;
 
@@ -1811,7 +1811,7 @@ private:
 	}
 
 	// Locations 0x06a9 - ?
-	void zPlaySound_CheckRing()
+	void __attribute__((no_sanitize("alignment"))) zPlaySound_CheckRing()
 	{
 		const uint8 sfxId = a;
 
@@ -2789,7 +2789,7 @@ private:
 	}
 
 	// Locations 0x0d87 - ?
-	void cfStopTrack()
+	void __attribute__((no_sanitize("alignment"))) cfStopTrack()
 	{
 		zTrack& track0 = *(zTrack*)&mRam[ix];
 
