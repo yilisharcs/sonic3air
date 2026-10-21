@@ -337,11 +337,9 @@ void EmulatorInterface::fillVRam(uint16 vramAddress, uint16 fillValue, uint16 by
 	if (bytes == 0)
 		return;
 
-	uint16* dst = (uint16*)(mInternal.mVRam + vramAddress);
 	for (uint16 i = 0; i < bytes; i += 2)
 	{
-		*dst = fillValue;
-		++dst;
+		rmx::writeMemoryUnaligned<uint16>(mInternal.mVRam + vramAddress + i, fillValue);
 	}
 
 	// Mark as changed
