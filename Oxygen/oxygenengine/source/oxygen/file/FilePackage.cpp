@@ -136,13 +136,13 @@ void FilePackage::createFilePackage(const std::wstring& packageFilename, const s
 
 		// Write entry header size
 		entryHeaderSize = output.size() - PackageHeader::HEADER_SIZE;
-		*(uint32*)&output[headerSizePosition] = (uint32)entryHeaderSize;
+		rmx::writeMemoryUnaligned<uint32>(&output[headerSizePosition], (uint32)entryHeaderSize);
 
 		for (auto& [key, packedFile] : packedFiles)
 		{
 			const uint32 position = (uint32)output.size();
 			serializer.write(&packedFile.mContent[0], packedFile.mContent.size());
-			*(uint32*)&output[packedFile.mPositionInFile] = position;
+			rmx::writeMemoryUnaligned<uint32>(&output[packedFile.mPositionInFile], position);
 			packedFile.mPositionInFile = position;
 		}
 	}
