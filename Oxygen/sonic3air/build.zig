@@ -92,8 +92,10 @@ pub fn build(b: *std.Build) void {
 
     sonic3air_mod.linkLibrary(oxygenengine_dep.artifact("oxygen"));
 
-    b.installArtifact(b.addExecutable(.{
+    const exe = b.addExecutable(.{
         .name = "sonic3air",
         .root_module = sonic3air_mod,
-    }));
+    });
+    exe.pie = true;
+    b.installArtifact(exe);
 }
