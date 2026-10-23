@@ -72,6 +72,13 @@ pub fn build(b: *std.Build) void {
         },
     });
 
+    const imgui_dep = b.dependency("imgui", .{
+        .target = target,
+        .optimize = optimize,
+    });
+    sonic3air_mod.linkLibrary(imgui_dep.artifact("imgui"));
+    sonic3air_mod.addCMacro("USE_IMGUI", "1");
+
     const librmx_dep = b.dependency("librmx", .{
         .target = target,
         .optimize = optimize,
