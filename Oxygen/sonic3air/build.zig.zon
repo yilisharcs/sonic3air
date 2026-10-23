@@ -14,6 +14,8 @@
         .oxygenengine = .{ .path = "../oxygenengine" },
 
         .SDL = .{ .path = "../../framework/external/sdl/SDL2" },
+
+        .imgui = .{ .path = "../../framework/external/imgui/imgui" },
         .libogg = .{ .path = "../../framework/external/ogg-vorbis/libogg" },
         .libvorbis = .{ .path = "../../framework/external/ogg-vorbis/libvorbis" },
     },
