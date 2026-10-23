@@ -9,6 +9,7 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
         .link_libc = true,
         .link_libcpp = true,
+        .strip = optimize != .debug,
     });
 
     sonic3air_mod.addIncludePath(b.path("source"));

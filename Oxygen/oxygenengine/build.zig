@@ -270,6 +270,7 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
         .link_libc = true,
         .link_libcpp = true,
+        .strip = optimize != .debug,
     });
     engineapp_mod.addIncludePath(b.path("source"));
     engineapp_mod.addCSourceFiles(.{
