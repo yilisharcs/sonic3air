@@ -290,8 +290,10 @@ pub fn build(b: *std.Build) void {
     engineapp_mod.addIncludePath(librmx_dep.path("source"));
     engineapp_mod.addIncludePath(lemonscript_dep.path("source"));
 
-    b.installArtifact(b.addExecutable(.{
+    const app = b.addExecutable(.{
         .name = "oxygenapp",
         .root_module = engineapp_mod,
-    }));
+    });
+    app.pie = true;
+    b.installArtifact(app);
 }
